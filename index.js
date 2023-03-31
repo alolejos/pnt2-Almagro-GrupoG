@@ -10,6 +10,45 @@ console.log(
   cliente.productosAdquiridos.forEach((registro) => console.log(registro))
 );
 
+// Crear el objeto carro con los atributos largo y velocidad
+const carro = {
+  largo: 5,
+  velocidad: 0,
+  marca: "",
+  modelo: "",
+  // Crear la función avanzar que modifica la velocidad según el aumento de velocidad
+  avanzar: function aumentoVelocidad(v) {
+    this.velocidad += v;
+  },
+  frenar: (freno) => (carro.velocidad -= freno),
+  recorrido: [],
+  agregarLugar: function (lugar) {
+    this.recorrido.push(lugar);
+  },
+};
+const fordMondeo = { ...carro };
+fordMondeo.marca = 'Ford'
+fordMondeo.modelo = 'Mondeo'
+fordMondeo.agregarLugar('Chivilcoy')
+
+
+console.log("Mondeo");
+console.log(fordMondeo);
+
+console.log('Carro');
+console.log(carro);
+
+console.log('Cronos');
+const fiatCronos = {...carro}
+
+console.log(fiatCronos);
+
+const arreglo = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+const arreglo1 = ["1", "2", "3", "4", "5", "6", 7, 8, 9];
+
+// Imprimir la velocidad actual del carro
+console.log("La velocidad actual del carro es: " + fordMondeo.velocidad);
 // let perro = "soy una variable"
 
 // console.log(typeof(perroDelVecino))
