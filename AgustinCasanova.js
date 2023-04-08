@@ -37,17 +37,12 @@ const proceso = {
     // devolver una nueva lista
     //
     actualizarStock() {
-      
+
        const  aux =  this.stockNuevo
        .map(f => this.stockAcutal.filter(e => e.codigoProducto === f.codigoProducto)
            .map(e=>  { return {codigoProducto:e.codigoProducto,cantidad:e.cantidad+f.paraAgregar,stockMinimo:e.stockMinimo }}));
 
             return aux
-    },
-
-    esNulo(z)
-    {
-      return z.codigoProducto == undefined;
     },
 
   };
