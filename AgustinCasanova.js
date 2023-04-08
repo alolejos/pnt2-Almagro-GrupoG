@@ -37,13 +37,18 @@ const proceso = {
     // devolver una nueva lista
     //
     actualizarStock() {
-        const aux =  this.stockAcutal
-        .map(f=> this.stockNuevo.filter(e => e.codigoProducto === f.codigoProducto)
-            .map(e=> { return {codigoProducto:f.codigoProducto,cantidad:f.cantidad+e.paraAgregar,stockMinimo:f.stockMinimo }}))
-            
+      
+       const  aux =  this.stockNuevo
+       .map(f => this.stockAcutal.filter(e => e.codigoProducto === f.codigoProducto)
+           .map(e=>  { return {codigoProducto:e.codigoProducto,cantidad:e.cantidad+f.paraAgregar,stockMinimo:e.stockMinimo }}));
+
             return aux
     },
 
+    esNulo(z)
+    {
+      return z.codigoProducto == undefined;
+    },
 
   };
   console.log(proceso.actualizarStock());
