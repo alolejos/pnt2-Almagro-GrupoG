@@ -27,23 +27,22 @@ const carro = {
   },
 };
 const fordMondeo = { ...carro };
-fordMondeo.marca = 'Ford'
-fordMondeo.modelo = 'Mondeo'
-fordMondeo.agregarLugar('Chivilcoy')
-
+fordMondeo.marca = "Ford";
+fordMondeo.modelo = "Mondeo";
+fordMondeo.agregarLugar("Chivilcoy");
 
 console.log("Mondeo");
 console.log(fordMondeo);
 
-console.log('Carro');
+console.log("Carro");
 console.log(carro);
 
-console.log('Cronos');
-const fiatCronos = {...carro}
+console.log("Cronos");
+const fiatCronos = { ...carro };
 
 console.log(fiatCronos);
 
-const arreglo = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+let arreglo = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const arreglo1 = ["1", "2", "3", "4", "5", "6", 7, 8, 9];
 
@@ -130,3 +129,17 @@ console.log("La velocidad actual del carro es: " + fordMondeo.velocidad);
 // console.log(`El valor es ${arreglo[0]}`);
 // arreglo.forEach((x, i) => console.log(`<li id="${i}">${x}</li>`));
 // */
+
+let otroArreglo = [1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 5, 6, 7, 8, 9];
+
+let a = function (valorVuelta, index) {
+  if (valorVuelta == 4) return valorVuelta;
+};
+
+function funcionDeFiltro(valorVuelta, index) {
+  if (valorVuelta == 4) return valorVuelta;
+}
+
+let resultado = otroArreglo.filter(funcionDeFiltro);
+
+console.log(resultado);
