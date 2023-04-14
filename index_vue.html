@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+ <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app" class="container px-5">
+  <h1>DIRECTIVAS</h1>
+  <HR></HR>
+  <h1>Renderización con doble llaves y <b>directiva v-bind</b></h1>
+  <h1 v-bind:class="estiloTitulo">{{mensaje}}</h1>
+  <h1 :class="estiloTitulo">{{mensaje}}</h1>
+  <hr>
+  <h1><b>Directiva v-if / v-else</b></h1>
+  <h2 v-if=true>{{ mensajeVif }}</h2>
+  <h2 v-if=noMostrarIf>{{ mensajeVif }}</h2>
+  <hr>
+  <h1><b>Directiva v-show</b></h1>
+  <h2 v-show=mostrarIf>{{ mensajeVif }}</h2>
+  <h2 v-show=noMostrarIf>{{ mensajeVif }}</h2>.
+  
+<table class="table">
+  <tr><td>Nombre</td><td>Precio</td><td>Borrar</td></tr>       
+  <tr v-for="paseador in paseadores">
+    <td v-show="paseador.activo">{{paseador.nombre}}</td>
+    <td v-show="paseador.activo">{{paseador.precio}}</td>
+    <td v-show="paseador.activo"><button class="btn-danger" @click="borrarPaseador(paseador.id)">Borrar</button><button class="btn-success" @click="editarPersona(paseador.id)">Editar</button></td>
+  </tr>      
+</table>
+
+ <br>
+    <br>
+    <label>Nombre</label>
+    <input v-model="paseador.nombre">
+    <br>
+    <label>Precio</label>
+    <input v-model="paseador.precio">
+    <br>
+    <br>
+    <button class="btn-primary" @click="agregarPaseador">Agregar</button>
+    <br>
+    <button class="btn-secondary" @click="ordenar">Ordenar</button>
+     <br>
+    <button class="btn-warning" v-on:click="mostrar">Mostrar Paseador</button>
+
+      <!-- Modal para editar persona -->
+<div class="modal fade" id="editarPersonaModal" tabindex="-1" role="dialog" aria-labelledby="editarPersonaModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editarPersonaModalLabel">Editar Persona</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" class="form-control" v-model="personaSeleccionada.nombre">
+          </div>
+          <div class="form-group">
+            <label>Apellido</label>
+            <input type="text" class="form-control" v-model="personaSeleccionada.apellido">
+          </div>
+          <div class="form-group">
+            <label>Edad</label>
+            <input type="number" class="form-control" v-model="personaSeleccionada.edad">
+          </div>
+          <div class="form-group">
+            <label>Domicilio</label>
+            <input type="text" class="form-control" v-model="personaSeleccionada.domicilio">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" @click="guardarPersonaEditada">Guardar</button>
+      </div>
+  ºº</div>
+  </div>
+</div>
+
+</div>
+
+ <script>
+ const { createApp } = Vue
+  createApp({
+  data() {
+  return {
+    mensaje: 'Hola Buenos Aires. empezamos con VUE',
+    mensajeVif: 'Si es true se muestra',
+    titulo: 'Título de la página',
+    otroMensaje: "Otro mensaje",
+    array: ["Menu", "Opcion1", "Opcion2"], 
+    mostrarShow: true,
+    claseBoton: "btn-success",
+    mostrarIf: true,
+    noMostrarIf: false,
+    numero: 10,
+    precio: 10,
+    nombre: "",
+    paseador: {
+      id: 0,
+      activo: true,
+      nombre: "",
+      precio: 0
+    },
+    personaSeleccionada: {
+      edad: 0,
+      nombre: "",
+      apellido: "",
+      domicilio: ""
+    },
+    estiloTitulo: "display-6",
+    paseadores: [
+      {id: '1', activo: true, nombre: "Juan", precio: 159},
+      {id: '2', activo: true, nombre: "Rodrigo", precio: 89},
+      {id: '3', activo: false, nombre: "Juanita", precio: 120},     
+      {id: '45345', activo: true, nombre: "Juan Perez", precio: 1220}
+    
+    ]
+  }
+  },
+  methods:{
+    estalogueado(){
+      return true
+    },
+    borrar() {this.paseadores.pop()},
+    borrarPaseador(id) {
+      console.log(id);
+      let index = this.paseadores.findIndex(registro => registro.id === id)
+      if(index !== -1) this.paseadores.splice(index, 1)
+    },
+    ordenar() {this.paseadores.sort((a, b)=>a.precio-b.precio)},
+    agregarPaseador(){      
+      this.paseadores.push({...this.paseador})
+    },
+    mostrar(){
+      console.log(this.paseador);
+    },
+    editarPersona(index) {
+      this.personaSeleccionada = {...this.personas[index]}; // Hacemos una copia de la persona seleccionada
+      $('#editarPersonaModal').modal('show'); // Mostramos la modal
+    },
+  }
+  }).mount('#app')
+ </script>
+
+ <style>
+ </style>
+
+</body>
+</html>
