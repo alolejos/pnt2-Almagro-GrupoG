@@ -47,7 +47,7 @@
 //let nuevoListado = listadoGastos.filter((datoVuelta) => datoVuelta == 4);
 
 //let nuevoResultado = listadoGastos.filter((vuelta) => vuelta == 3);
-
+/*
 let listadoProductos = [
   { nombre: "Jabón", precio: 1000 },
   { nombre: "Shampoo", precio: 100 },
@@ -115,3 +115,72 @@ let variable = function (parametros1, parametro2, ...spreadOperato) {
 let funcionFlecha = (variable1, variable2) => variable1 + variable2;
 
 console.log(funcionFlecha(1, 3));
+*/
+
+//listaProductos.forEach()
+
+function funcionDummy(num1 = 10, num2 = 100, operacion) {
+  return "El resultado es: " + operacion(num1, num2);
+}
+
+let sa2 = function (a, b) {
+  return a + b;
+};
+
+let sumar = (a, b) => a + b;
+
+let restar = (a, b) => a - b;
+
+//console.log(funcionDummy(10, 10, restar));
+
+let listaProductos = [
+  { nombre: "jabon", precio: 123 },
+  { nombre: "shampoo", precio: 1243 },
+  { nombre: "enjuague", precio: 654 },
+  { nombre: "pasta", precio: 7876 },
+];
+
+// let variableAuxiliar = 0;
+// console.log("CON UN FOR A LA ANTIGUA");
+// for (let i = 0; i < listaProductos.length; i++) {
+//   console.log(listaProductos[i].nombre);
+// }
+// console.log("CON UN FOREACH PASANDO CALLBACK");
+
+// listaProductos.forEach(function (producto) {
+//   console.log(producto.nombre);
+// });
+
+let array = [];
+let array1 = [];
+
+let arrayNumeros = [1, 20, 50, 100]
+
+console.log(arrayNumeros.reduce((a, n) => a += n));
+
+// CON FOR COMO ANTES
+for (let i = 0; i < listaProductos.length; i++) {
+  if (listaProductos[i].precio > 1000) {
+    array1.push(listaProductos[i]);
+  }
+}
+// CON FOREACH
+let listado = listaProductos.forEach((producto) => {
+  if (producto.precio > 1000) {
+    array.push(producto);
+  }
+});
+// CON FILTER
+//console.log(
+  listaProductos.filter(
+    (producto) =>
+      producto.precio >
+      arrayNumeros.reduce(
+        (numero, acumulador) => (acumulador = acumulador + numero)
+      )
+  )
+
+
+
+console.log(array);
+console.log(array1);

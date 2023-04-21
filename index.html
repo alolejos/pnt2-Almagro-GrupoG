@@ -84,7 +84,8 @@
 </div>
 
  <script>
- const { createApp } = Vue
+  import axios from 'axios'
+  const { createApp } = Vue
   createApp({
   data() {
   return {
@@ -104,6 +105,7 @@
       nombre: "",
       precio: 0
     },
+    datos: [],
     paseadores: [
       {id: '1', activo: true, nombre: "Juan", precio: 159},
       {id: '2', activo: true, nombre: "Rodrigo", precio: 89},
@@ -111,7 +113,12 @@
     ]
   }
   },
-  methods:{
+  methods:{   
+    async getDatos(){
+      const response = await axios.get('https://jsonplaceholder.typicode.com/photos/?_limit=12')
+      this.datos = response.data
+      console.log(this.datos);
+    },
     borrar() {this.paseadores.pop()},
     borrarPaseador(id) {
       console.log(id);
@@ -122,6 +129,9 @@
     agregarPaseador(){      
       this.paseadores.push(this.paseador)
     }
+  },
+  created(){
+    this.getDatos()
   }
   }).mount('#app')
  </script>
