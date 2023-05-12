@@ -1,5 +1,6 @@
 <script setup>
 import { storeToRefs } from "pinia";
+import { RouterLink } from "vue-router";
 import { useCounterStore } from "../stores/counter";
 import Tabla from "../components/Tabla.vue";
 const store = useCounterStore();
@@ -56,7 +57,7 @@ const auto = {
           >Ingrese el Modelo.</small
         >
       </div>
-      <button v-on:click="agregar(auto)">Agregar</button>
+      <button @click="agregar(auto)">Agregar</button>
     </div>
   </div>
 </template>
